@@ -98,3 +98,7 @@ jobs:
           role-to-assume: ${{ secrets.AWS_ROLE }}
           role-session-name: samplerolesession
           aws-region: ${{ secrets.AWS_REGION }}
+      - name: test credentials
+        run: |
+          env
+          aws sts get-caller-identity
