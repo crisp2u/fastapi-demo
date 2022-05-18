@@ -18,8 +18,8 @@ spec:
         ports:
         - containerPort: 8080
         env:
-        - name: ALT_GREETING
+        - name: GREETING
           valueFrom:
             configMapKeyRef:
               name: greeting
-              key: altGreeting
+              key: greeting
