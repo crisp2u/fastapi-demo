@@ -125,7 +125,24 @@ jobs:
       - name: Setup kustomize
         uses: imranismail/setup-kustomize@v1
 
-      - name: Debug
+     - name: Kustomize Set Image
         run: |-
-          kubectl get nodes
+          cd deploy
+          kustomize edit set image ghcr.io/crisp2u/fastapi-demo:main=ghcr.io/crisp2u/fastapi-demo:${{jobs.build.steps.meta.outputs.tags }}
 
+      - name: Show kustomization.yaml
+        run: |-
+          cd deploy
+          cat kustomization.yaml
+
+      - name: Deploy to EKS
+        run: |-
+          cd deploy
+          kustomize build . | kubectl apply -f -
+
+      - name: Update Image
+        run: kubectl rollout restart deployment fastapi-demo
+
+      - name: Status
+        run: |-
+          kubectl get pods
