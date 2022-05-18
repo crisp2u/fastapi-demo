@@ -15,8 +15,11 @@ spec:
       containers:
       - name: fastapi
         image: ghcr.io/crisp2u/fastapi-demo:main
+        imagePullPolicy: Always
         ports:
-        - containerPort: 8080
+          - name: http
+            containerPort: 8080
+            protocol: TCP
         env:
         - name: GREETING
           valueFrom:

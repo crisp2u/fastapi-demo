@@ -114,7 +114,10 @@ jobs:
           role-to-assume: ${{ secrets.AWS_ROLE }}
           role-session-name: githubactionsession
           aws-region: ${{ secrets.AWS_REGION }}
-      - name: test credentials
-        run: |
-          env
-          aws sts get-caller-identity
+
+      - name: Setup kubeconfig
+        run: |-
+          aws eks update-kubeconfig --name "goodnotes"
+      - name: Setup kustomize
+        uses: imranismail/setup-kustomize@v1
+
