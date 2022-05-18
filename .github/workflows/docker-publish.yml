@@ -34,6 +34,8 @@ jobs:
       # with sigstore/fulcio when running outside of PRs.
       id-token: write
     environment: goodnotes
+    outputs:
+      tags: ${{ steps.meta.outputs.tags }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -128,7 +130,7 @@ jobs:
       - name: Kustomize Set Image
         run: |-
           cd deploy
-          kustomize edit set image ghcr.io/crisp2u/fastapi-demo:main=ghcr.io/crisp2u/fastapi-demo:${{jobs.build.steps.meta.outputs.tags }}
+          kustomize edit set image ghcr.io/crisp2u/fastapi-demo:main=ghcr.io/crisp2u/fastapi-demo:${{needs.build.outputs.tags }}
 
       - name: Show kustomization.yaml
         run: |-
