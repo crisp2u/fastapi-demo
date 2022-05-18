@@ -3,5 +3,4 @@ kind: ConfigMap
 metadata:
   name: greeting
 data:
-  altGreeting: "Good Morning!"
-  enableRisky: "false"
+  greeting: "Hello World2!"
