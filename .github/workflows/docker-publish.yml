@@ -125,10 +125,10 @@ jobs:
       - name: Setup kustomize
         uses: imranismail/setup-kustomize@v1
 
-     - name: Kustomize Set Image
-        run: |-
-          cd deploy
-          kustomize edit set image ghcr.io/crisp2u/fastapi-demo:main=ghcr.io/crisp2u/fastapi-demo:${{jobs.build.steps.meta.outputs.tags }}
+      - name: Kustomize Set Image
+          run: |-
+            cd deploy
+            kustomize edit set image ghcr.io/crisp2u/fastapi-demo:main=ghcr.io/crisp2u/fastapi-demo:${{jobs.build.steps.meta.outputs.tags }}
 
       - name: Show kustomization.yaml
         run: |-
