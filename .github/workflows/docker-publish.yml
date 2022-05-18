@@ -101,12 +101,14 @@ jobs:
       # with sigstore/fulcio when running outside of PRs.
       id-token: write
     environment: goodnotes
+    needs:
+      - build
     steps:
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: ${{ secrets.AWS_ROLE }}
-          role-session-name: samplerolesession
+          role-session-name: githubactionsession
           aws-region: ${{ secrets.AWS_REGION }}
       - name: test credentials
         run: |

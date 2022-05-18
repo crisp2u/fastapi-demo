@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deployment: fastapi-demo
+  template:
+    metadata:
+      labels:
+        deployment: fastapi-demo
+    spec:
+      containers:
+      - name: fastapi
+        image: ghcr.io/crisp2u/fastapi-demo:main
+        ports:
+        - containerPort: 8080
+        env:
+        - name: ALT_GREETING
+          valueFrom:
+            configMapKeyRef:
+              name: greeting
+              key: altGreeting
