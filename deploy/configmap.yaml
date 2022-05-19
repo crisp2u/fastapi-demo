@@ -4,3 +4,4 @@ metadata:
   name: greeting
 data:
   greeting: "Hello World2!"
+  version: "n/a"

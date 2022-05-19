@@ -26,3 +26,8 @@ spec:
             configMapKeyRef:
               name: greeting
               key: greeting
+        - name: VERSION
+          valueFrom:
+            configMapKeyRef:
+              name: greeting
+              key: version
