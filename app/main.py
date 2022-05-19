@@ -1,5 +1,5 @@
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Response
 from pydantic import BaseSettings
 
 
@@ -14,7 +14,8 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
-    return f"<p>{settings.greeting}</p><div><em>{settings.version}</em></div>."
+    content = f"<p>{settings.greeting}</p><div><em>{settings.version}</em></div>."
+    return Response(content=content, media_type="text/html")
 
 
 @app.get("/health")
