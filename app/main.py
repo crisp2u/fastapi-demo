@@ -14,7 +14,7 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
-    content = f"<p>{settings.greeting}</p><div><em>{settings.version}</em></div>."
+    content = f"<p>{settings.greeting}<em>[[{settings.version}]]</em></p>"
     return Response(content=content, media_type="text/html")
 
 
