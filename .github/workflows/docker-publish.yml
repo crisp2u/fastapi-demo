@@ -137,7 +137,7 @@ jobs:
         run: |-
           cd deploy
           kustomize edit set image ghcr.io/${{ github.repository }}:main=ghcr.io/${{needs.build.outputs.image }}
-
+          kustomize edit add configmap greeting --behavior merge --from-literal=greeting="Hello World" --from-literal=version="${{needs.build.outputs.image }}"
       - name: Show kustomization.yaml
         run: |-
           cd deploy
